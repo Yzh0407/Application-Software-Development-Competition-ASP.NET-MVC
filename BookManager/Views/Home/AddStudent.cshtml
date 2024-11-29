@@ -1,0 +1,150 @@
+@model BookManager.Models.StuModel;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加学生</title>
+    <style>
+        /* 页面整体样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 表单容器 */
+        .AddForm {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px; /* 减少内边距 */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 表单标题 */
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* 表单项 */
+        .form-group {
+            margin-bottom: 10px; /* 减少项之间的间距 */
+            display: flex;
+            align-items: center; /* 标签和输入框在一行 */
+        }
+
+        /* 标签样式 */
+        label {
+            font-size: 16px;
+            color: #555;
+            text-align: left;
+            width: 100px; /* 标签宽度缩小 */
+            margin-right: 10px; /* 减少右边距 */
+        }
+
+        /* 输入框样式 */
+        input {
+            width: 100%; /* 输入框宽度为100% */
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            /* 输入框聚焦时的样式 */
+            input:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+                outline: none;
+            }
+
+        /* 提交按钮样式 */
+        .btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        /* 提交后的信息样式 */
+        .message {
+            text-align: center;
+            font-size: 16px;
+            color: green;
+            margin-top: 15px;
+        }
+
+        .error {
+            text-align: center;
+            font-size: 16px;
+            color: red;
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+    @{
+        var message = ViewBag.Message as string;
+    }
+    <div class="AddForm">
+        <h1>添加学生表单</h1>
+        @using (Html.BeginForm("AddStudent", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="stu_num">学号：</label>
+                <input type="number" id="stu_num" name="stu_num" required placeholder="请输入学号">
+            </div>
+            <div class="form-group">
+                <label for="stu_name">姓名：</label>
+                <input type="text" id="stu_name" name="stu_name" required placeholder="请输入姓名">
+            </div>
+            <div class="form-group">
+                <label for="stu_age">年龄：</label>
+                <input type="number" id="stu_age" name="stu_age" required placeholder="请输入年龄">
+            </div>
+            <div class="form-group">
+                <label for="stu_class">班级：</label>
+                <input type="text" id="stu_class" name="stu_class" required placeholder="请输入班级">
+            </div>
+            <div class="form-group">
+                <label for="stu_gender">性别：</label>
+                <input type="text" id="stu_gender" name="stu_gender" required placeholder="请输入性别">
+            </div>
+            <div class="btn">
+                <button type="submit">提交</button>
+            </div>
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div class="message">@message</div>
+            }
+        }
+    </div>
+</body>
+
+</html>

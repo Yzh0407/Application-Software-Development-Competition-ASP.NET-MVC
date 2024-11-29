@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加图书</title>
+    <style>
+        /* 页面整体样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 表单容器 */
+        .AddForm {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 表单标题 */
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* 表单项 */
+        .form-group {
+            margin-bottom: 10px; /* 调整间距 */
+            display: flex;
+            align-items: center; /* 标签和输入框在一行 */
+        }
+
+        /* 标签样式 */
+        label {
+            font-size: 16px;
+            color: #555;
+            text-align: left;
+            width: 100px; /* 标签宽度减小 */
+            margin-right: 10px; /* 减少间距 */
+        }
+
+        /* 输入框样式 */
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            /* 输入框聚焦时的样式 */
+            input:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+                outline: none;
+            }
+
+        /* 提交按钮样式 */
+        .btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        /* 提交后的信息样式 */
+        .message {
+            text-align: center;
+            font-size: 16px;
+            color: green;
+            margin-top: 15px;
+        }
+
+        .error {
+            text-align: center;
+            font-size: 16px;
+            color: red;
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+    @{
+        var message = ViewBag.Message as string;
+    }
+    <div class="AddForm">
+        <h1>添加图书表单</h1>
+        @using (Html.BeginForm("AddBook", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="book_tile">书名：</label>
+                <input type="text" id="book_tile" name="book_tile" required placeholder="请输入书名">
+            </div>
+            <div class="form-group">
+                <label for="stu_num">借阅学号：</label>
+                <input type="text" id="stu_num" name="stu_num" required placeholder="请输入学号">
+            </div>
+            <div class="form-group">
+                <label for="creat_date">借阅日期：</label>
+                <input type="date" id="creat_date" name="creat_date" required>
+            </div>
+            <div class="form-group">
+                <label for="remark">备注：</label>
+                <input type="text" id="remark" name="remark" required placeholder="请输入备注">
+            </div>
+            <div class="btn">
+                <button type="submit">提交</button>
+            </div>
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div class="message">@message</div>
+            }
+        }
+    </div>
+</body>
+
+</html>

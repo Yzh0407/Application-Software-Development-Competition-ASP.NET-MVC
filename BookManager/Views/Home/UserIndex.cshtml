@@ -1,0 +1,138 @@
+﻿@model IEnumerable<BookManager.Models.UserModel>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>用户列表</title>
+
+    <style>
+        /* 页面整体样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* 外部圆角 */
+            overflow: hidden; /* 确保圆角效果 */
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+            td button {
+                padding: 6px 12px;
+                font-size: 14px;
+                margin: 2px;
+                border-radius: 4px; /* 按钮圆角 */
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                td button:hover {
+                    opacity: 0.8;
+                }
+
+        /* 按钮颜色 */
+        .add-btn {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+            .add-btn:hover {
+                background-color: #27ae60;
+            }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .edit-btn {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        /* 处理空数据情况 */
+        .no-data {
+            text-align: center;
+            font-size: 18px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>用户列表</h2>
+@*     @using (Html.BeginForm("AddUser", "Home", FormMethod.Get))
+    {
+        <button type="submit" class="add-btn">添加用户</button>
+    } *@
+
+    <table>
+        <thead>
+            <tr>
+                <th>账户</th>
+                <th>密码</th>
+@*                 <th>操作</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Password</td>
+@*                     <td>
+                        @using (Html.BeginForm("DelUser", "Home", new { id = user.UserName }, FormMethod.Post))
+                        {
+                            <button type="submit" class="delete-btn">删除</button>
+                        }
+                    </td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+                transform: translateY(-2px);
+            }
+
+            button:active {
+                background-color: #004085;
+                transform: translateY(0);
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group:last-child {
+                margin-bottom: 0;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        @{
+            var username = Context.Session.GetString("Username");
+        }
+
+        <h1>导航页面</h1>
+        <p>欢迎您, @username</p>
+        <div class="form-group">
+            @using (Html.BeginForm("UserIndex", "Home", FormMethod.Get))
+            {
+                <button type="submit">查看用户信息</button>
+            }
+        </div>
+        <div class="form-group">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                <button type="submit">查看图书信息</button>
+            }
+        </div>
+        <div class="form-group">
+            @using (Html.BeginForm("AddBook", "Home", FormMethod.Get))
+            {
+                <button type="submit">添加图书信息</button>
+            }
+        </div>
+        <div class="form-group">
+            @using (Html.BeginForm("StuIndex", "Home", FormMethod.Get))
+            {
+                <button type="submit">查看学生信息</button>
+            }
+        </div>
+        <div class="form-group">
+            @using (Html.BeginForm("AddStudent", "Home", FormMethod.Get))
+            {
+                <button type="submit">添加学生信息</button>
+            }
+        </div>
+        <div class="form-group">
+            @using (Html.BeginForm("PublisherIndex", "Home", FormMethod.Get))
+            {
+                <button type="submit">查看出版社信息</button>
+            }
+        </div>
+        <div class="form-group">
+            @using (Html.BeginForm("AddPublisher", "Home", FormMethod.Get))
+            {
+                <button type="submit">添加出版社信息</button>
+            }
+        </div>
+
+        <div class="form-group">
+            @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+            {
+                <button type="submit">登出</button>
+            }
+        </div>
+    </div>
+</body>
+
+</html>

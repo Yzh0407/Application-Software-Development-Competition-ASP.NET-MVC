@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #555;
+            font-weight: 600;
+            margin-left: 30px;
+            margin-right: 15px;
+        }
+
+        input {
+            width: 65%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+            input:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .message {
+            margin-top: 20px;
+            color: red;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            <h1>登录</h1>
+            <div class="form-group">
+                <label for="UserName">账号：</label>
+                <input type="text" id="UserName" placeholder="请输入账号" name="UserName" required />
+            </div>
+            <div class="form-group">
+                <label for="PassWord">密码：</label>
+                <input type="password" id="PassWord" placeholder="请输入密码" name="PassWord" required />
+            </div>
+            <button type="submit">登录</button>
+            @if (!string.IsNullOrEmpty(ViewBag.Message as string))
+            {
+                <div class="message">@ViewBag.Message</div>
+            }
+        }
+    </div>
+</body>
+
+</html>
