@@ -1,0 +1,131 @@
+﻿@model WebApplication1.Models.Student;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑页面</title>
+    <style>
+        /* 页面整体样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* 容器样式 */
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            display: block;
+        }
+
+        /* 表单容器 */
+        .form-container {
+            width: 600px; /* 固定表单宽度 */
+            margin: 0 auto; /* 水平居中 */
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 标题 */
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2rem;
+            padding-bottom: 20px;
+        }
+
+        /* 表单项布局 */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: inline-block;
+                width: 120px;
+                font-size: 1rem;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .form-group input {
+                width: calc(100% - 130px); /* 使输入框填充剩余空间 */
+                padding: 10px;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+                .form-group input:focus {
+                    border-color: #4CAF50;
+                    outline: none;
+                }
+
+        /* 提交按钮 */
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        .readonly-input {
+            background-color: #f0f0f0; /* 设置为灰色背景 */
+            color: #999; /* 设置为灰色字体，表示不可编辑 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>编辑页面</h1>
+            <form asp-action="Edit" asp-controller="Home" method="post">
+                <div class="form-group">
+                    <label for="StudentID">学号：</label>
+                    <input type="text" asp-for="StudentID" id="StudentID" class="readonly-input" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="Name">姓名：</label>
+                    <input type="text" asp-for="Name" id="Name" />
+                </div>
+                <div class="form-group">
+                    <label for="Gender">性别：</label>
+                    <input type="text" asp-for="Gender" id="Gender" />
+                </div>
+                <div class="form-group">
+                    <label for="Age">年龄：</label>
+                    <input type="number" asp-for="Age" id="Age" />
+                </div>
+                <div class="form-group">
+                    <label for="Grade">年级：</label>
+                    <input type="text" asp-for="Grade" id="Grade" />
+                </div>
+                <div class="form-group">
+                    <label for="Major">专业：</label>
+                    <input type="text" asp-for="Major" id="Major" />
+                </div>
+                <div class="form-group">
+                    <label for="Province">省份：</label>
+                    <input type="text" asp-for="Province" id="Province" />
+                </div>
+                <button type="submit">提交修改</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

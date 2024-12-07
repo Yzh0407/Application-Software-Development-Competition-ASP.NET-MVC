@@ -1,0 +1,156 @@
+﻿@model IEnumerable<Student>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生信息表测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        td {
+            color: #555;
+        }
+
+        .search-box {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+            .search-box input {
+                padding: 8px;
+                width: 250px;
+                margin-right: 10px;
+            }
+
+            .search-box button {
+                border-radius: .25em;
+                padding: 8px 12px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+
+                .search-box button:hover {
+                    background-color: #45a049;
+                }
+
+        .btn {
+            border-radius: .25em;
+            position:relative;
+            left:130px;
+            float:left;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            }
+
+            .btn:hover {
+                color: white;
+                    background-color: #45a049;
+            }
+
+        .abtn {
+            text-decoration:none;
+            border-radius: .25em;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            .abtn:hover {
+                color:white;
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <h1>综合信息表</h1>
+    <div class="search-box">
+        <button class="btn" onclick="location.href='@Url.Action("Add", "Home")'">新增</button>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <input type="text" name="searchQuery" placeholder="请输入查询..." />
+
+            <button type="submit">查询</button>
+        }
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>年级</th>
+                <th>专业</th>
+                <th>省份</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.StudentID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Gender</td>
+                    <td>@item.Age</td>
+                    <td>@item.Grade</td>
+                    <td>@item.Major</td>
+                    <td>@item.Province</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.StudentID" class="abtn">编辑</a>
+                        <a asp-action="DeleteConfirm" asp-route-id="@item.StudentID" class="abtn">删除</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
